@@ -118,24 +118,29 @@ namespace FreeBudsController
             byte[] packet = FreeBudsProtocol.BuildSetAncPacket(mode, level);
 
             using var socket = await ConnectAsync(macAddress);
-            if (socket == null) return false;
+            if (socket == null)
+            {
+                Debug.WriteLine("[FreeBudsService] Gagal terhubung ke socket RFCOMM");
+                return false;
+            }
 
             try
             {
                 await socket.SendAsync(packet, SocketFlags.None);
-                await Task.Delay(250);
+                await Task.Delay(200);
 
-                // Drain optional response
+                // Drain optional ACK response jika ada
                 byte[] buffer = new byte[256];
-                if (socket.Poll(500000, SelectMode.SelectRead))
+                if (socket.Poll(300000, SelectMode.SelectRead))
                 {
                     await socket.ReceiveAsync(buffer, SocketFlags.None);
                 }
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine($"[FreeBudsService] Exception saat kirim paket: {ex.Message}");
                 return false;
             }
             finally
