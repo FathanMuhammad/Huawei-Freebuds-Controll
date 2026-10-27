@@ -29,6 +29,31 @@ namespace FreeBudsController
             Loaded += MainWindow_Loaded;
             Closing += MainWindow_Closing;
             StateChanged += MainWindow_StateChanged;
+            KeyDown += MainWindow_KeyDown;
+        }
+
+        private async void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.F1 || e.Key == System.Windows.Input.Key.D1)
+            {
+                await SetModeAsync(AncMode.Off);
+            }
+            else if (e.Key == System.Windows.Input.Key.F2 || e.Key == System.Windows.Input.Key.D2)
+            {
+                await SetModeAsync(AncMode.Awareness);
+            }
+            else if (e.Key == System.Windows.Input.Key.F3 || e.Key == System.Windows.Input.Key.D3)
+            {
+                await SetModeAsync(AncMode.NoiseCancelling, _currentSelectedLevel);
+            }
+            else if (e.Key == System.Windows.Input.Key.F5)
+            {
+                await RefreshStatusAsync();
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                if (_settings.MinimizeToTray) Hide();
+            }
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
