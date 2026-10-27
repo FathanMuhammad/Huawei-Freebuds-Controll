@@ -13,6 +13,29 @@ namespace FreeBudsController
         public string MacAddress { get; set; } = "0C:17:73:61:85:E6";
         public bool MinimizeToTray { get; set; } = true;
         public bool AutoRefreshOnOpen { get; set; } = true;
+        public bool StartMinimized { get; set; } = false;
+
+        public static void SetStartupWithWindows(bool enable)
+        {
+            try
+            {
+                using var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(
+                    @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+                if (key != null)
+                {
+                    string appPath = Process.GetCurrentProcess().MainModule?.FileName ?? "";
+                    if (enable && !string.IsNullOrEmpty(appPath))
+                    {
+                        key.SetValue("FreeBudsController", $"\"{appPath}\" --minimized");
+                    }
+                    else
+                    {
+                        key.DeleteValue("FreeBudsController", false);
+                    }
+                }
+            }
+            catch { }
+        }
 
         private static readonly string SettingsDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
