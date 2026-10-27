@@ -1,10 +1,10 @@
-# Huawei FreeBuds SE4 ANC Controller 🎧
+# Huawei FreeBuds SE4 ANC Controller 
 
 Aplikasi Windows (.NET 8 WPF) dan script Python untuk mengontrol Active Noise Cancellation (ANC) pada TWS **Huawei FreeBuds SE4 ANC** melalui koneksi Bluetooth RFCOMM/SPP tanpa memerlukan aplikasi resmi HP.
 
 ---
 
-## 🌟 Fitur Utama
+## Fitur Utama
 
 - **3 Mode Kontrol Lengkap (Sesuai Aplikasi HP)**:
   - 🔇 **Off**: Mode standar tanpa peredam suara bising.
@@ -32,9 +32,9 @@ Aplikasi Windows (.NET 8 WPF) dan script Python untuk mengontrol Active Noise Ca
 
 ---
 
-## 🚀 Cara Menjalankan
+## Cara Menjalankan
 
-### 1. Menggunakan Aplikasi .NET (Rekomendasi)
+### 1. Menggunakan Aplikasi .NET
 
 #### Menjalankan langsung via .NET CLI:
 ```bash
@@ -76,7 +76,7 @@ python freebuds_anc.py gui
 
 ---
 
-## 🛠️ Protokol Bluetooth Huawei (Reverse Engineered)
+## Protokol Bluetooth Huawei (Reverse Engineered)
 
 - **Port RFCOMM**: Default FreeBuds SE 4 ANC berada di **Port 1**.
 - **Command Set ANC Mode**: `0x2B 0x04`
