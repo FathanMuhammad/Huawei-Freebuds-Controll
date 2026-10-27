@@ -87,10 +87,22 @@ namespace FreeBudsController
         {
             try
             {
+                Icon appIcon = SystemIcons.Application;
+                try
+                {
+                    var streamInfo = Application.GetResourceStream(new Uri("pack://application:,,,/app.ico"));
+                    if (streamInfo != null)
+                    {
+                        using var s = streamInfo.Stream;
+                        appIcon = new Icon(s);
+                    }
+                }
+                catch { }
+
                 _notifyIcon = new NotifyIcon
                 {
                     Text = "FreeBuds SE4 ANC Controller",
-                    Icon = SystemIcons.Application,
+                    Icon = appIcon,
                     Visible = true
                 };
 
