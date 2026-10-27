@@ -4,7 +4,7 @@ echo   Building and Publishing FreeBudsController (.NET 8)
 echo ========================================================
 echo.
 
-dotnet publish FreeBudsController\FreeBudsController.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o publish\
+dotnet publish FreeBudsController\FreeBudsController.csproj -c Release -o publish\
 
 if %ERRORLEVEL% EQU 0 (
     echo.
