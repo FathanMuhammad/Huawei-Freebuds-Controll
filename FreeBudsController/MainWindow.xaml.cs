@@ -16,6 +16,7 @@ namespace FreeBudsController
         private NotifyIcon? _notifyIcon;
         private AncLevel _currentSelectedLevel = AncLevel.Dynamic;
         private bool _isUpdating = false;
+        private System.Windows.Threading.DispatcherTimer? _autoRefreshTimer;
 
         public MainWindow()
         {
@@ -25,11 +26,28 @@ namespace FreeBudsController
             TxtMacAddress.Text = _settings.MacAddress;
 
             InitializeTrayIcon();
+            InitializeTimer();
 
             Loaded += MainWindow_Loaded;
             Closing += MainWindow_Closing;
             StateChanged += MainWindow_StateChanged;
             KeyDown += MainWindow_KeyDown;
+        }
+
+        private void InitializeTimer()
+        {
+            _autoRefreshTimer = new System.Windows.Threading.DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(20)
+            };
+            _autoRefreshTimer.Tick += async (_, _) =>
+            {
+                if (IsVisible && WindowState != WindowState.Minimized && !_isUpdating)
+                {
+                    await RefreshStatusAsync();
+                }
+            };
+            _autoRefreshTimer.Start();
         }
 
         private async void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
