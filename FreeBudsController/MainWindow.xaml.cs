@@ -200,6 +200,13 @@ namespace FreeBudsController
                 TxtCurrentStatus.Text = modeName;
                 TxtStatusDetail.Text = $"Berhasil diubah ke {modeName}";
                 UpdateIndicators(mode);
+
+                if (_notifyIcon != null)
+                {
+                    string shortTitle = $"FreeBuds SE4: {modeName}";
+                    if (shortTitle.Length > 63) shortTitle = shortTitle.Substring(0, 63);
+                    _notifyIcon.Text = shortTitle;
+                }
             }
             else
             {
