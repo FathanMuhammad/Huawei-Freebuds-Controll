@@ -233,14 +233,21 @@ namespace FreeBudsController
             if (activeMode == AncMode.Off)
             {
                 TxtCurrentStatus.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184));
+                BorderStatusCard.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(51, 65, 85));
             }
             else if (activeMode == AncMode.Awareness)
             {
                 TxtCurrentStatus.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(56, 189, 248));
+                BorderStatusCard.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(56, 189, 248));
             }
             else if (activeMode == AncMode.NoiseCancelling)
             {
                 TxtCurrentStatus.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(16, 185, 129));
+                BorderStatusCard.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(16, 185, 129));
+            }
+            else
+            {
+                BorderStatusCard.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(30, 41, 59));
             }
         }
 

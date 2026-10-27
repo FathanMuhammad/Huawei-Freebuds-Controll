@@ -115,7 +115,7 @@
         </Grid>
 
         <!-- STATUS CARD -->
-        <Border Grid.Row="1" Background="#131B2E" BorderBrush="#1E293B" BorderThickness="1" CornerRadius="14" Padding="16,14" Margin="0,0,0,16">
+        <Border x:Name="BorderStatusCard" Grid.Row="1" Background="#131B2E" BorderBrush="#1E293B" BorderThickness="1.5" CornerRadius="14" Padding="16,14" Margin="0,0,0,16">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
