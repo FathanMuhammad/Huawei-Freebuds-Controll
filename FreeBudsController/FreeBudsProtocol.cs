@@ -45,6 +45,14 @@ namespace FreeBudsController
             AncMode.NoiseCancelling => $"Noise Cancelling ({LevelName})",
             _ => ModeName
         };
+
+        public string StatusEmoji => Mode switch
+        {
+            AncMode.Off => "🔇",
+            AncMode.Awareness => "👂",
+            AncMode.NoiseCancelling => "🔕",
+            _ => "🎧"
+        };
     }
 
     public class BatteryStatus
